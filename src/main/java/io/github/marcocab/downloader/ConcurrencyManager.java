@@ -103,7 +103,7 @@ public class ConcurrencyManager {
 		sleepRandom(10);
 	}
 
-	private static Thread createThread(String threadName, final Method execMethod, Object obj) {
+	private static Thread createThread(String threadName, final Method execMethod, final Object obj) {
 		final Thread t = new Thread(threadName) {
 			@SuppressWarnings("deprecation")
 			public void run() {

@@ -1,6 +1,7 @@
 package io.github.marcocab.downloader;
 
 import static io.github.marcocab.downloader.ConcurrencyManager.*;
+
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -15,7 +16,6 @@ public class FileDownloadManager {
 	private static final String FILE_URL_REGEXP = "^(https?|ftp)://.*$";
 	private static final String FILE_NAME_REGEXP = "Fichero:"; //
 
-	private FileDownloader fileDownloader;
 	private ConcurrentMap<String, List<String>> parts;
 	private int maximumThreadsNeeded;
 
@@ -24,14 +24,13 @@ public class FileDownloadManager {
 	}
 
 	public void startDownload() {
-		fileDownloader = new FileDownloader(this.getMaximumThreadsNeeded());
+		final FileDownloader fileDownloader = new FileDownloader(this.getMaximumThreadsNeeded());
 		fileDownloader.process(parts);
 		Method method;
 		try {
 			method = fileDownloader.getClass().getDeclaredMethod("download");
 			createNThreads(this.getMaximumThreadsNeeded(), method, (Object) fileDownloader);
 		} catch (NoSuchMethodException | SecurityException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

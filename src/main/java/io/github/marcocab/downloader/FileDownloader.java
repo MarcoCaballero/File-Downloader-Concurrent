@@ -11,8 +11,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.CountDownLatch;
 
-import io.gihub.marcocaballero.fileutils.FileUtils;
-
 public class FileDownloader {
 
 	private volatile ConcurrentMap<String, List<String>> parts;
@@ -80,7 +78,6 @@ public class FileDownloader {
 			int fragDescargar = fragPendiente;
 			fragPendiente++;
 			exitMutex("fragPendiente");
-
 			downloadPart(fragDescargar);
 
 		}

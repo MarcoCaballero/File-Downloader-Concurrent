@@ -1,4 +1,4 @@
-package io.gihub.marcocaballero.fileutils;
+package io.github.marcocab.downloader;
 
 import java.io.File;
 import java.io.FileInputStream;
